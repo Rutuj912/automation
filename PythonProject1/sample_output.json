@@ -1,0 +1,4 @@
+{
+    "page_1": "This is a sample PDF for OCR testing.\nIt contains some text for text extraction and an image with text for OCR.\nYou can use this PDF to test fitz (PyMuPDF) or EasyOCR extraction.\nSingle page PDF for testing purposes."
+}
+

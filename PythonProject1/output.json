@@ -1,0 +1,9 @@
+{
+    "extracted_text": [
+        "This is a sample PDF for OCR testing:",
+        "It contains some text for text extraction and an image with text for OCR.",
+        "You can use this PDF to test fitz (PyMuPDF) or EasyOCR extraction:",
+        "Single page PDF for testing purposes:",
+        "Sample image bexttorOCRtest"
+    ]
+}
