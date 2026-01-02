@@ -112,23 +112,42 @@
 from pywinauto.application import Application
 import time
 
-# Full path to Outlook
+
 outlook_path = r"C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE"
-
-# Start Outlook
 app = Application(backend="uia").start(outlook_path)
-time.sleep(15)  # wait for Outlook UI to load
+time.sleep(15)
 
-# Connect to the main Outlook window
+
 outlook_window = app.window(title_re=".*Outlook.*")
-
-# Wait until the window is visible
 outlook_window.wait("visible", timeout=30)
 
-# Print all controls
-#outlook_window.print_control_identifiers()
 
 new_email_button = outlook_window.child_window(title="New Email", auto_id="NewItem", control_type="Button")
 new_email_button.click_input()
 
-outlook_window.print_control_identifiers()
+email_window = app.window(title_re=".*- Message .*")
+email_window.wait("visible", timeout=20)  # waits until new window is visible
+
+
+# Focus first Edit control (To field)
+to_field = email_window.child_window(control_type="Edit", found_index=0)
+to_field.set_focus()
+to_field.type_keys("spandan@zylitix.ai", with_spaces=True)
+to_field.click_input()
+
+
+subject= email_window.child_window(title="Subject", auto_id="4516", control_type="Text")
+subject.set_focus()
+subject.type_keys("Automation Task – PDF Data Extraction and Email Sharing ", with_spaces=True)
+
+
+message= email_window.child_window(title="Message", auto_id="547", control_type="Text")
+message.set_focus()
+message.type_keys("Hello, here is the word file attached of the extracted document", with_spaces=True)
+
+
+attach= email_window.child_window(title="Attachment", auto_id="547")
+attach.set_focus()
+attach.click_input()
+
+email_window.print_control_identifiers()
